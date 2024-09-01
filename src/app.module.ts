@@ -8,11 +8,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { APP_GUARD, Reflector } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/passport/jwt-auth.guard';
+import { PermissionModule } from './modules/cms/permissions/permission.module';
 @Module({
     imports: [
         ConfigModule.forRoot(),
         UsersModule,
         AuthModule,
+        PermissionModule,
         TypeOrmModule.forRoot({
             type: process.env.TYPE as any,
             host: process.env.MYSQL_HOST,

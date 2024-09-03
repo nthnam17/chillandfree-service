@@ -12,6 +12,8 @@ import { PermissionModule } from './modules/cms/permissions/permission.module';
 import { RoleModule } from './modules/cms/role/role.module';
 import { RoleHasPermissionModule } from './modules/cms/role_has_permission/role_has_permission.module';
 import { CategoryModule } from './modules/cms/category/category.module';
+import { GenreModule } from './modules/cms/genre/genre.module';
+import { CountryModule } from './modules/cms/country/country.module';
 @Module({
     imports: [
         ConfigModule.forRoot(),
@@ -21,6 +23,8 @@ import { CategoryModule } from './modules/cms/category/category.module';
         RoleModule,
         RoleHasPermissionModule,
         CategoryModule,
+        GenreModule,
+        CountryModule,
         TypeOrmModule.forRoot({
             type: process.env.TYPE as any,
             host: process.env.MYSQL_HOST,

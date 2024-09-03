@@ -9,12 +9,18 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 import { APP_GUARD, Reflector } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/passport/jwt-auth.guard';
 import { PermissionModule } from './modules/cms/permissions/permission.module';
+import { RoleModule } from './modules/cms/role/role.module';
+import { RoleHasPermissionModule } from './modules/cms/role_has_permission/role_has_permission.module';
+import { CategoryModule } from './modules/cms/category/category.module';
 @Module({
     imports: [
         ConfigModule.forRoot(),
         UsersModule,
         AuthModule,
         PermissionModule,
+        RoleModule,
+        RoleHasPermissionModule,
+        CategoryModule,
         TypeOrmModule.forRoot({
             type: process.env.TYPE as any,
             host: process.env.MYSQL_HOST,

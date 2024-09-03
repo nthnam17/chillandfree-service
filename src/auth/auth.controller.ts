@@ -23,7 +23,7 @@ import { RequestInfo } from '../common/request-info.decorator';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UsersService } from '../modules/cms/users/users.service';
 import { ProfileDto } from './dto/profile.dto';
-import { LocalAuthGuard } from './local-auth.guard';
+import { LocalAuthGuard } from './passport/local-auth.guard';
 import { JwtAuthGuard } from './passport/jwt-auth.guard';
 import { Public } from './decorators/jwt.decorators';
 

@@ -26,7 +26,7 @@ import { UpdateCountryDto } from './dto/update.dto';
 import { CountryService } from './country.service';
 
 @ApiTags('Quốc gia')
-@Controller('genre')
+@Controller('country')
 @UseInterceptors(LoggingInterceptor)
 export class CountryController {
     constructor(

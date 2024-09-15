@@ -46,6 +46,7 @@ export class AuthService {
         return this.responseService.createResponse(200, 'Đăng nhập thành công', _requestId, at, {
             access_token,
             expires_in: process.env.JWT_EXPIRES_IN,
+            role: user.role_id
         });
     }
 

@@ -27,7 +27,7 @@ export class CategoryService {
             if (sort) {
                 queryBuilder.orderBy(`categories.${sort.field}`, sort.order.toUpperCase() as 'ASC' | 'DESC');
             } else {
-                queryBuilder.orderBy(`categories.id`, 'DESC');
+                queryBuilder.orderBy(`categories.position`, 'ASC');
             }
 
             if (title) queryBuilder.andWhere('categories.title LIKE :title', { title: `%${title}%` });

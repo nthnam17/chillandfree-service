@@ -9,6 +9,7 @@ export class CreateNewsCategoryDto {
     @ApiProperty()
     description: string;
 
+    @IsNotEmpty({ message: 'Đường dẫn không được để trống' })
     @ApiProperty()
     slug: string;
 

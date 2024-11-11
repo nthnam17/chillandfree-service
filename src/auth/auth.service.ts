@@ -22,9 +22,10 @@ export class AuthService {
         @InjectRepository(User)
         private userRepository: Repository<User>,
     ) {}
-    async validateUser(email: string, password: string): Promise<any> {
+    async validateUser(username: string, password: string): Promise<any> {
+        const user = await this.usersService.findByField('username', username);
 
-        const user = await this.usersService.findByField('email', email);
+        if (!user) return null;
 
         const passwordValid = await bcrypt.compare(password, user.password);
 
@@ -36,7 +37,7 @@ export class AuthService {
     async login(user: any) {
         const _requestId = uuidv4();
         const at = new Date().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' });
-        const payload = {username: user.email, sub: user.id}
+        const payload = { username: user.username, sub: user.id };
         const access_token = this.jwtService.sign(payload, {
             expiresIn: process.env.JWT_EXPIRES_IN,
             secret: process.env.JWT_SECRET,
@@ -46,13 +47,13 @@ export class AuthService {
         return this.responseService.createResponse(200, 'Đăng nhập thành công', _requestId, at, {
             access_token,
             expires_in: process.env.JWT_EXPIRES_IN,
-            role: user.role_id
+            role: user.role_id,
         });
     }
 
     async Profile(id: number) {
-        const profile = this.userRepository.findOne({ where: {id} });
-        return profile; 
+        const profile = this.userRepository.findOne({ where: { id } });
+        return profile;
     }
 
     decodeToken(token: string): any {

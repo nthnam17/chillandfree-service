@@ -27,7 +27,8 @@ async function bootstrap() {
                 callback(new Error('Not allowed by CORS'));
             }
         },
-        allowedHeaders: 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, Authorization, X-Channel, Access-Control-Allow-Origin',
+        allowedHeaders:
+            'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, Authorization, X-Channel, Access-Control-Allow-Origin',
         methods: 'GET,PUT,POST,DELETE,UPDATE,OPTIONS',
         credentials: true,
     });
@@ -38,6 +39,6 @@ async function bootstrap() {
     app.use(json({ limit: '50mb' }));
     app.use(urlencoded({ extended: true, limit: '50mb' }));
 
-    await app.listen(8080);
+    await app.listen(process.env.POST);
 }
 bootstrap();
